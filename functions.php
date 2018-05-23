@@ -1,24 +1,26 @@
 <?php
 
 // Add scripts and stylesheets
-function startwordpress_scripts() {
+function balter_scripts() {
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '3.3.6' );
-	wp_enqueue_style( 'blog', get_template_directory_uri() . '/css/blog.css' );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '3.3.6', true );
+//   wp_enqueue_script( 'bootstrap', get_template_directory_uri() . 'https://code.jquery.com/jquery-3.2.1.min.js' );
+  wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '3.3.6', true );  
+// 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js');
+//    wp_enqueue_script( 'nav', '/js/nav.js' );
 }
 
-add_action( 'wp_enqueue_scripts', 'startwordpress_scripts' );
+add_action( 'wp_enqueue_scripts', 'balter_scripts' );
 
 // Add Google Fonts
-function startwordpress_google_fonts() {
+function balter_google_fonts() {
 				wp_register_style('OpenSans', '//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800');
 				wp_enqueue_style( 'OpenSans');
 		}
 
-add_action('wp_print_styles', 'startwordpress_google_fonts');
+add_action('wp_print_styles', 'balter_google_fonts');
 
 // WordPress Titles
-function startwordpress_wp_title( $title, $sep ) {
+function balter_wp_title( $title, $sep ) {
 	global $paged, $page;
 	if ( is_feed() ) {
 		return $title;
@@ -32,7 +34,7 @@ function startwordpress_wp_title( $title, $sep ) {
 	}
 	return $title;
 } 
-add_filter( 'wp_title', 'startwordpress_wp_title', 10, 2 );
+add_filter( 'wp_title', 'balter_wp_title', 10, 2 );
 
 // Custom settings
 function custom_settings_add_menu() {
@@ -79,8 +81,8 @@ function custom_settings_page_setup() {
 }
 add_action( 'admin_init', 'custom_settings_page_setup' );
 
-// Support Featured Images
-add_theme_support( 'post-thumbnails' );
+// Support Featured menu-items
+add_theme_support( 'post-menu-items' );
 
 // Custom Post Type
 function create_my_custom_post() {
@@ -95,9 +97,154 @@ function create_my_custom_post() {
 			'supports' => array(
 					'title',
 					'editor',
-					'thumbnail',
+					'menu-item',
 				  'custom-fields'
 			)
 	));
 }
 add_action('init', 'create_my_custom_post'); 
+
+function create_page_home_post() {
+	register_post_type('page_home_post',
+			array(
+			'labels' => array(
+					'name' => __('Page Home'),
+					'singular_name' => __('Page Home'),
+			),
+			'public' => true,
+			'has_archive' => true,
+			'supports' => array(
+					'title',
+          'date',
+          'author',
+          'excerpt',
+					'editor',
+					'menu-item',
+				  'custom-fields'
+			)
+	));
+}
+add_action('init', 'create_page_home_post'); 
+
+function balter_widgets_init() {
+
+	register_sidebar( array(
+		'name'          => 'Sidebar right',
+		'id'            => 'sidebar-right',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => "</div>\n<hr />\n",
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+  	register_sidebar( array(
+		'name'          => 'Sidebar left',
+		'id'            => 'sidebar-left',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => "</div>\n<hr />\n",
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+}
+
+add_action( 'widgets_init', 'balter_widgets_init' );
+
+if ( function_exists('register_sidebar') )
+    register_sidebar(array(
+       'name' => 'Your Widget Name',
+       'description' => 'Description of your widget',
+       'before_widget' => '<div class="container-top">',
+       'after_widget' => '</div>',
+       'before_title' => '<h3 class="widget-title">',
+       'after_title' => '</h3>',
+    ));
+
+
+/* function balter_before_sidebar() {
+  echo "<h1>Before Sidebar</h1>";
+}
+
+add_action('widgets_init', balter_before_sidebar); */
+
+register_nav_menus( array (
+    "main-menu" => "Main Menu",
+    "footer-menu" => "Footer Menu"
+    )
+);
+
+/*
+ * Switch default core markup for search form, comment form, and comments
+ * to output valid HTML5.
+ */
+add_theme_support( 'html5', array(
+  'search-form',
+  'comment-form',
+  'comment-list',
+  'gallery',
+  'caption',
+) );
+
+
+/*
+ * Enable support for Post menu-items on posts and pages.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/featured-menu-items-post-menu-items/
+ */
+add_theme_support( 'post-menu-items' );
+/**
+ * Filter the except length to 20 words.
+ *
+ * @param int $length Excerpt length.
+ * @return int (Maybe) modified excerpt length.
+ */
+function wpdocs_custom_excerpt_length( $length ) {
+    return 40;
+}
+add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+
+/**
+ * Filter the "read more" excerpt string link to the post.
+ *
+ * @param string $more "Read more" excerpt string.
+ * @return string (Maybe) modified "read more" excerpt string.
+ */
+function wpdocs_excerpt_more( $more ) {
+    return sprintf( '<a class="read-more" href="%1$s">%2$s</a>',
+        get_permalink( get_the_ID() ),
+        __( '...keep reading', 'textdomain' )
+    );
+}
+add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
+
+
+function latest_post() {  
+  $args = array(
+    'posts_per_page' => 1, // we need only the latest post, so get that post only
+  );
+
+  $str = "";
+  $posts = get_posts($args);
+
+  foreach($posts as $post){
+    $str .= "<div class=\"blog-post\">";
+    $str .= "<h2 class=\"blog-post-title\">".$post->post_title."</h2>";
+    $str .= "<p class=\"blog-post-meta\">".$post->post_date."</p>";
+    if ( has_post_menu-item() ) {
+      $str .= the_post_menu-item();
+    }
+    $str .= $post->post_content;
+
+    $str .= "</div><!-- /.blog-post -->";
+  }
+  return $str;
+
+}
+
+add_shortcode('latest_post', 'latest_post');
+
+/* register new menu-item menu-item
+ * 200px wide and unlimited height
+ */
+add_image_size( 'sidebar-excerpts', 360, 9999, false );
+add_image_size( 'post-featured', 800, 9999, false );

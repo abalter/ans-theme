@@ -1,0 +1,41 @@
+.excerpts .blog-post .blog-post-title {
+  font-size: 1.6rem;
+  font-family: var(--subtitle-font);
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: none;
+}
+
+.excerpts a {
+  text-decoration: none;
+}
+.excerpts a:hover {
+  outline: 1px solid black;
+}
+
+.excerpts .excerpt-body p {
+  font-size: 1em;
+  font-family: var(--text-font);-
+  line-height: 1rem;
+  color: #777;
+}
+
+.excerpts .blog-post-meta p,a {
+  font-family: var(--subtitle-font);
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #000;
+}
+
+.excerpts .thumbnail {
+  width: 100%;
+  outline: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.excerpts .thumbnail img {
+  width: 100%;
+  height: auto;
+}

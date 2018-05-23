@@ -1,0 +1,86 @@
+{
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  height: 3em;
+  padding: 0;
+  z-index: 2;
+}
+#main-menu {
+}
+.menu {
+  margin: 0;
+}
+.menu-item-row {
+  display: inline-block;
+}
+.menu-item-column {
+  display: block;
+}
+.menu-item a {
+  text-decoration: none;
+  color: black;
+  font-family: Raleway;
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 0 0.2em;
+  vertical-align: baseline;
+  z-index: 2;
+}
+.menu-item a:hover {
+  color: green;
+}
+}
+
+/////
+#contact .menu-item, #social .menu-item {
+  margin: 0.7vw;
+}
+
+#social a:hover, #contact a:hover {
+    color: green;
+}
+//////
+
+
+@media(min-width: 768px)
+{
+  .menu-toggle {
+    display: none !important;
+  }
+  
+  .menu-item-column {
+    display: none;
+  }
+
+  .menu-item-row {
+    display: inline-block;
+  }
+}
+
+@media(max-width: 767px)
+{
+  .menu-toggle {
+    display: block !important;
+  }
+
+  .menu {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * Masthead for nav
+ */

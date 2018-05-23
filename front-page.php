@@ -8,14 +8,15 @@
     </div>
 
     <div class="main-content">
+      <?php $the_query = new WP_Query( 'posts_per_page=1' ); ?>
 
       <?php 
-      if ( have_posts() ) : while ( have_posts() ) : the_post();
-      get_template_part( 'content-single', get_post_format() );
-      if ( comments_open() || get_comments_number() ) :
-      comments_template();
-      endif;
-      endwhile; endif; 
+      if ($the_query -> have_posts()) : $the_query -> the_post();
+        get_template_part( 'content-single', get_post_format() );
+        if ( comments_open() || get_comments_number() ) :
+          comments_template();
+        endif;
+      endif; 
       ?>
     </div>	<!-- /.main-content -->
 

@@ -1,0 +1,71 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1em;
+  background: var(--sidebar-background);
+}
+
+.sidebar .widget {
+
+}
+
+.sidebar hr {
+  margin: 1em 0;
+  padding: 1px;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #555;
+  display: none;
+}
+
+#sidebar-left {
+  flex: 0.3 0.3 240px;
+  max-width: 360px;
+  margin-right: 0.5em;
+}
+#sidebar-right {
+  flex: 0.2 0.2 180px;
+  max-width: 240px;
+  margin-left: 0.5em;
+}
+
+.sidebar a {
+  text-decoration: underline;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  display: block;
+  margin: 0.5em 0;
+}
+
+
+.sidebar .widget_archive {
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .widget_categories {
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .widget {
+  padding: 0.5em 0;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+}
+
+.sidebar .widget-title {
+  margin: 0;
+  padding: 0;
+}
+

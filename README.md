@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Start WordPress
 
 ### A Theme for Learning WordPress
@@ -71,3 +72,6 @@ You do need to know how to set up a local server environment. Fortunately, if yo
 ## License
 
 The code is open source and available under the [MIT License](LICENSE.md).
+=======
+# ans-theme
+>>>>>>> 2b7c5c09f1cfecd1d0b7a728f06201f0bd4fa420

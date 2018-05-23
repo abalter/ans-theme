@@ -3,8 +3,7 @@
 
   <div class="page-body">
     <div class="sidebar" id="sidebar-left">
-      <?php get_template_part( 'content-excerpts'); ?>
-      <?php //dynamic_sidebar('sidebar-left'); ?> 
+      <?php dynamic_sidebar('sidebar-left'); ?> 
     </div>
 
     <div class="main-content">
@@ -27,4 +26,3 @@
   <?php get_footer(); ?>
 
 </div> <!-- /full-page -->
-
