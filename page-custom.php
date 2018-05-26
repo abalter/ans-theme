@@ -1,10 +1,11 @@
+<h1>page-custom.php</h1>
 <?php get_header(); ?>
 
 	<div class="row">
 		<div class="col-sm-12">
 
-			<?php 
-				$args =  array( 
+			<?php
+				$args =  array(
 					'post_type' => 'my-custom-post',
 					'orderby' => 'menu_order',
 					'order' => 'ASC'

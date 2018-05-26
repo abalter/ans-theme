@@ -1,3 +1,4 @@
+<h1>full-page.php</h1>
 <div class="full-page">
   <?php get_header(); ?>
 

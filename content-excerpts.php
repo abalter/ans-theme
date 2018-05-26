@@ -1,3 +1,4 @@
+<h1>content-excerpt.php</h1>
 <div class="excerpts">
   <?php $the_query = new WP_Query( 'posts_per_page=5&offset=1' ); ?>
 

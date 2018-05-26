@@ -1,3 +1,4 @@
+<h1>comments.php</h1>
 <?php if ( post_password_required() ) {
 	return;
 } ?>

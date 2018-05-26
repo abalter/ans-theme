@@ -1,3 +1,4 @@
+<h1>page.php</h1>
 <div class="full-page">
 
   <?php get_header(); ?>
@@ -6,21 +7,21 @@
 
     <div class="sidebar" id="sidebar-left">
       <?php get_template_part( 'content-excerpts'); ?>
-      <?php //dynamic_sidebar('sidebar-left'); ?> 
+      <?php //dynamic_sidebar('sidebar-left'); ?>
     </div>
 
     <div class="main-content">
-			<?php 
+			<?php
 				if ( have_posts() ) : while ( have_posts() ) : the_post();
 
 					get_template_part( 'content-single', get_post_format() );
 
-				endwhile; endif; 
+				endwhile; endif;
 			?>
     </div>	<!-- /.main-content -->
 
     <div class="sidebar" id="sidebar-right">
-      <?php dynamic_sidebar('sidebar-right'); ?> 
+      <?php dynamic_sidebar('sidebar-right'); ?>
     </div>
 
   </div> <!-- /page-body -->
